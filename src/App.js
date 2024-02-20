@@ -2,7 +2,7 @@ import logo from './images/n64.jpg';
 import './App.css';
 
 function App() {
-  return (<div>
+  return (<div >
     weatherApp
   </div>
   );
