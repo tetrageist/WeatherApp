@@ -1,0 +1,118 @@
+<HTML>
+<HEAD>
+<SCRIPT>
+
+function MakeHTTP( url, reply )
+{
+	const xhr = new XMLHttpRequest();
+	xhr.open("GET", url);
+	xhr.send();
+	xhr.responseType = "json";
+	xhr.onload = () => {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			reply( xhr.response );
+		} else {
+			console.log(`Error: ${xhr.status}`);
+		}
+	};
+}
+
+function WriteOut( str )
+{
+	document.getElementById( "output" ).innerHTML += "<p>" + str + "</p>";
+}
+
+function HourlyForecast( data )
+{
+	let periods = data.properties.periods;
+	//WriteOut( JSON.stringify( periods ) );
+	//console.log( data );
+
+	var canvas = document.getElementById( "outputCanvas" );
+	var width = canvas.width;
+	var height = canvas.height;
+	var sper = width / periods.length;
+
+	var ctx = canvas.getContext("2d");
+
+	var minp = 10000;
+	var maxp = -10000;
+	for( var i = 0; i < periods.length; i++ )
+	{
+		let p = periods[i].temperature;
+		if( p < minp ) minp = p;
+		if( p > maxp ) maxp = p;	
+	}
+
+	var graphHeight = height - 100;
+	var margin = 50;
+
+	for( var i = 0; i < periods.length; i++ )
+	{
+		let p = periods[i];
+		//console.log( periods[i].temperature );
+		let x = i * sper;
+		let y = ( maxp - p.temperature ) / ( maxp - minp ) * graphHeight + margin;
+
+		if( i == 0 )
+			ctx.moveTo(x, y);
+		ctx.lineTo(x, y);
+		ctx.stroke();
+	}
+
+	ctx.moveTo( 0, margin ); 
+	ctx.lineTo( width, margin );
+	ctx.stroke();
+	ctx.font = "48px serif";
+	ctx.strokeText( maxp, 0, margin);
+	ctx.stroke();
+
+	ctx.moveTo( 0, height - margin ); 
+	ctx.lineTo( width, height - margin );
+	ctx.stroke();
+	ctx.font = "48px serif";
+	ctx.strokeText( minp, 0, height );
+	ctx.stroke();
+}
+
+function GotWeatherGrid( data )
+{
+	WriteOut( JSON.stringify( data.properties.forecastHourly ) );
+	console.log( data );
+	MakeHTTP( data.properties.forecastHourly, HourlyForecast );
+}
+
+function GotLatLong( data )
+{
+	let geo = data.locations[0].feature.geometry;
+	WriteOut( "Is at: " + geo.y + ", " + geo.x );
+
+	MakeHTTP( "https://api.weather.gov/points/" + geo.y + "," + geo.x, GotWeatherGrid );
+}
+
+function GotSuggestions( data )
+{
+	WriteOut( data.suggestions[0].text + " key: " + data.suggestions[0].magicKey );
+	MakeHTTP( "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/find?magicKey=" +   data.suggestions[0].magicKey +"&f=json", GotLatLong );
+}
+
+function LoadWeather( )
+{
+	var cityname = document.getElementById( "cityname" ).value;
+	MakeHTTP( "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/suggest?f=json&countryCode=USA%2CPRI%2CVIR%2CGUM%2CASM&text=" + encodeURI( cityname ) + "&f=json", GotSuggestions );
+}
+
+</SCRIPT>
+<BODY>
+
+<input id=cityname type=text value="bellevue, wa"><input type=submit onclick="LoadWeather();" value="Get Hourly Forecast">
+<br>
+<canvas id="outputCanvas" width="1600" height="300" style="border:1px solid #000000;">
+</canvas>
+
+<DIV ID=output>
+</DIV>
+
+
+</BODY>
+</HTML>
