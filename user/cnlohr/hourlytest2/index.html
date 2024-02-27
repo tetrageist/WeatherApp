@@ -239,7 +239,7 @@ function GotSuggestions( data )
 function LoadWeather( )
 {
 	var cityname = document.getElementById( "cityname" ).value;
-	MakeHTTP( "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/suggest?f=json&countryCode=USA%2CPRI%2CVIR%2CGUM%2CASM&text=" + encodeURI( cityname ) + "&f=json", GotSuggestions );
+	MakeHTTP( "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/suggest?f=json&text=" + encodeURI( cityname ) + "&f=json", GotSuggestions );
 }
 
 </SCRIPT>
