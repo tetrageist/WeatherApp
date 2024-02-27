@@ -1,24 +1,20 @@
-import logo from './images/n64.jpg';
-import './App.css';
+import "./App.css";
+import Display from "./components/Display";
+import Search from "./components/Search";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-      
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          hello! 
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Yay Nintendo!
-        </a>
-      </header>
+    <div>
+      <h1 className="title text-3xl bg-blue-100 text-primary p-6 text-center">
+        weatherApp&reg;
+      </h1>
+      <p className="p-6"> hello, maybe we put a field here for city name?</p>
+      <Search />
+      <Display />
+      <div className="p-6 flex justify-around font-semibold border rounded-xl shadow">
+        <div>The weather today</div>
+        <div>60 degrees</div>
+      </div>
     </div>
   );
 }
