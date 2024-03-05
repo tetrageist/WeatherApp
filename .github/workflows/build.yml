@@ -20,6 +20,7 @@ jobs:
       - run: rm -r .git
       - run: git clone git@github.com:abacef/abacef.github.io.git
       - run: rm -r abacef.github.io/*
+      - run: ls -a abacef.github.io/
       - run: cp -r build/* abacef.github.io/
       - run: cd abacef.github.io
       - run: git config --global user.email "not_an_email_address@abacef.github.io"
