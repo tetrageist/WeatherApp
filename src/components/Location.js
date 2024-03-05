@@ -6,15 +6,15 @@ function Location() {
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
-        position => {
+        (position) => {
           setLocation({
             latitude: position.coords.latitude,
-            longitude: position.coords.longitude
+            longitude: position.coords.longitude,
           });
         },
-        error => {
+        (error) => {
           console.error("Error getting user location:", error);
-        }
+        },
       );
     } else {
       console.error("Geolocation is not supported by this browser.");
