@@ -19,7 +19,7 @@ jobs:
       - run: yarn build
       - run: git clone git@github.com:abacef/abacef.github.io.git
       - run: rm -r abacef.github.io/*
-      - run: cp build/* abacef.github.io/
+      - run: cp -r build/* abacef.github.io/
       - run: cd abacef.github.io
       - run: git add --all && git commit -m "yet another automated commit from tetrageist/WeatherApp"
       - run: git push
