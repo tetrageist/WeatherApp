@@ -18,8 +18,8 @@ jobs:
       - run: yarn install
       - run: yarn build
       - run: rm -r .git
-      - run: git clone git@github.com:abacef/abacef.github.io.git
-      - run: cd "abacef.github.io"
+      - run: git clone git@github.com:abacef/abacef.github.io.git abacef
+      - run: cd abacef
       - run: ls -l
       - run: git branch
       - run: rm -r .
