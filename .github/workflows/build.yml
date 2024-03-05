@@ -20,6 +20,7 @@ jobs:
       - run: rm -r .git
       - run: git clone git@github.com:abacef/abacef.github.io.git
       - run: cd abacef.github.io
+      - run: ls -l
       - run: git branch
       - run: rm -r .
       - run: cp -r ../build/* .
