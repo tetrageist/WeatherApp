@@ -21,6 +21,8 @@ jobs:
       - run: rm -r abacef.github.io/*
       - run: cp -r build/* abacef.github.io/
       - run: cd abacef.github.io
+      - run: git config --global user.email "not_an_email_address@abacef.github.io"
+      - run: git config --global user.name "Juice Brenner bot"
       - run: git add --all && git commit -m "yet another automated commit from tetrageist/WeatherApp"
       - run: git push
 
