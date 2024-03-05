@@ -17,12 +17,12 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       - run: yarn install
       - run: yarn build
+      - run: rm -r .git
       - run: git clone git@github.com:abacef/abacef.github.io.git
       - run: rm -r abacef.github.io/*
-      - run: cp -r build/* abacef.github.io/
-      - run: cd abacef.github.io
+      - run: cp -r build/* abacef.github.io
       - run: git config --global user.email "not_an_email_address@abacef.github.io"
       - run: git config --global user.name "Juice Brenner bot"
-      - run: git add --all && git commit -m "yet another automated commit from tetrageist/WeatherApp"
-      - run: git push
+      - run: git add --all && git commit -m "yet another automated commit from tetrageist/WeatherApp" && git push
+        working-directory: abacef.github.io
 
