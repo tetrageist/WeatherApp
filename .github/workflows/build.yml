@@ -18,14 +18,11 @@ jobs:
       - run: yarn install
       - run: yarn build
       - run: rm -r .git
-      - run: git clone git@github.com:abacef/abacef.github.io.git abacef
-      - run: cd abacef
-      - run: ls -l
-      - run: git branch
-      - run: rm -r .
-      - run: cp -r ../build/* .
+      - run: git clone git@github.com:abacef/abacef.github.io.git
+      - run: rm -r abacef.github.io/*
+      - run: cp -r build/* abacef.github.io
       - run: git config --global user.email "not_an_email_address@abacef.github.io"
       - run: git config --global user.name "Juice Brenner bot"
-      - run: git add --all && git commit -m "yet another automated commit from tetrageist/WeatherApp"
-      - run: git push
+      - run: git add --all && git commit -m "yet another automated commit from tetrageist/WeatherApp" && git push
+        working-directory: abacef.github.io
 
