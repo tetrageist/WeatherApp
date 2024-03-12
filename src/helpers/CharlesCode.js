@@ -1,5 +1,5 @@
 function MakeHTTP(url, reply) {
-  const xhr = new XMLHttpRequest();
+  var xhr = new XMLHttpRequest();
   xhr.open("GET", url);
   xhr.send();
   xhr.responseType = "json";
