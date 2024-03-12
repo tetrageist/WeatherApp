@@ -1,6 +1,7 @@
 import "./App.css";
 import Display from "./components/Display";
 import Search from "./components/Search";
+import Location from "./components/Location"
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <p className="p-6"> hello, maybe we put a field here for city name?</p>
       <Search />
       <Display />
+      <Location/>
       <div className="p-6 flex justify-around font-semibold border rounded-xl shadow">
         <div>The weather today</div>
         <div>60 degrees</div>
