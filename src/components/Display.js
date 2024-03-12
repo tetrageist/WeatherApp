@@ -1,7 +1,7 @@
 import React from "react";
 import weather from "../images/clear.png";
 
-const Display = () => {
+const Display = ({currentTemp, shortForecast}) => {
   return (
     <div>
       <p className="text-2xl text-center font-bold pb-2">
@@ -16,8 +16,8 @@ const Display = () => {
             <p className="text-center text-sm uppercase font-semibold pb-2">
               Seattle, WA
             </p>
-            <p className="text-5xl font-bold text-center pb-2">42°</p>
-            <p className="text-center text-sm uppercase font-semibold">Clear</p>
+            <p className="text-5xl font-bold text-center pb-2">{currentTemp}°</p>
+            <p className="text-center text-sm uppercase font-semibold">{shortForecast}</p>
             <div className="flex gap-4 justify-center">
               <p>H:48°</p>
               <p>L:41°</p>
