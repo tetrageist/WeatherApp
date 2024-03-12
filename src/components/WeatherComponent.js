@@ -61,7 +61,7 @@ const WeatherComponent = () => {
 
   // Get the current forecast period
   const currentForecast = weatherData.forecast[0];
-  const currentGrid = weatherData.grid[0];
+  // const currentGrid = weatherData.grid[0];
 
   return (
     <div>
