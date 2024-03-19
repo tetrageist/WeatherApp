@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Display from './Display';
+import LoadingDots from './LoadingDots/LoadingDots.tsx';
 
 const WeatherComponent = () => {
   const [weatherData, setWeatherData] = useState(null);
@@ -48,7 +49,7 @@ const WeatherComponent = () => {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="flex justify-center items-center h-1/2"><LoadingDots/></div>;
   }
 
   if (error) {
