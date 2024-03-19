@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Display from './Display';
-import LoadingDots from './LoadingDots/LoadingDots.tsx';
+import LoadingDots from './LoadingDots/LoadingDots.jsx';
 
 const WeatherComponent = () => {
   const [weatherData, setWeatherData] = useState(null);
