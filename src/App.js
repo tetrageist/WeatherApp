@@ -29,7 +29,10 @@ function App() {
         weatherApp&reg;
       </h1>
       <Search />
-      <WeatherComponent longitude={location.longitude} latitude={location.latitude}/>
+      <WeatherComponent
+        longitude={location.longitude}
+        latitude={location.latitude}
+      />
       <div className="p-6 flex justify-around font-semibold border rounded-xl shadow">
         <div>The weather today</div>
         <div>60 degrees</div>
