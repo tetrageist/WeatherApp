@@ -15,6 +15,7 @@ const Search = ( fields ) => {
           console.log( l.feature.geometry.y + " " + l.feature.geometry.x );
          // fields.weather.props = { latitude: l.feature.geometry.y, longitude: l.feature.geometry.x };
          // fields.weather.getWeatherData( l.feature.geometry.y, l.feature.geometry.x ).then( console.log( "Done" ) );
+         // XXX TODO HERE
         }
       } );
   };
