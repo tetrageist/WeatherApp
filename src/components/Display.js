@@ -1,16 +1,27 @@
 import React from "react";
 import weather from "../images/clear.png";
+import data from "../data/commentData"; // Import the data file
 
-const Display = ({currentTemp, shortForecast}) => {
+const Display = ({ currentTemp, shortForecast }) => {
+  // Find the closest match to the short forecast in the data array
+  const matchingData = data.reduce((closestMatch, item) => {
+    if (shortForecast.toLowerCase().includes(item.class) && (!closestMatch || item.class.length > closestMatch.class.length)) {
+      return item;
+    }
+    return closestMatch;
+  }, null);
+  console.log(matchingData);
+
   return (
     <div>
       <p className="text-2xl text-center font-bold pb-2">
-        It's fine for now, stay home
+        {matchingData ? matchingData.body : "It's fine for now, stay home"}
       </p>
       <div className="flex justify-center items-center bg-blue-100 p-6">
         <div className="flex items-center">
           <div>
-            <img src={weather} alt="weather img" />
+            {/* Use the matching image */}
+            <img src={matchingData ? require(`../images/${matchingData.image}`).default : weather} alt="weather img" />
           </div>
           <div className="ml-4">
             <p className="text-center text-sm uppercase font-semibold pb-2">
@@ -30,3 +41,4 @@ const Display = ({currentTemp, shortForecast}) => {
 };
 
 export default Display;
+
