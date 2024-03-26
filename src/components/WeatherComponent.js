@@ -31,7 +31,6 @@ const WeatherComponent = ( { location } ) => {
   }, [location] );
 
   const getWeatherData = async (latitude, longitude) => {
-    console.log( "LAT: "+  latitude );
     setLoading(true);
     try {
       const response = await fetch(`https://api.weather.gov/points/${latitude},${longitude}`);

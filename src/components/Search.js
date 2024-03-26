@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const Search = ( { updateLocation} ) => {
+const Search = ( { setLocation} ) => {
   const [strLoc, changeStrLoc] = useState("");
   const [strResp, changeStrResp] = useState( ( <div> ... </div> ) );
  // const [location, setLocation] = useState({});
@@ -12,12 +12,8 @@ const Search = ( { updateLocation} ) => {
         if( json.locations && json.locations[0] )
         {
           const l = json.locations[0];
-          //console.log( fields.weather );
           console.log( l.feature.geometry.y + " " + l.feature.geometry.x );
-          console.log( updateLocation );
-          console.log( "Going" );
-          //updateLocation( l.feature.geometry.y, l.feature.geometry.x );
-          updateLocation( {
+          setLocation( {
             latitude: l.feature.geometry.y,
             longitude: l.feature.geometry.x,
           });
