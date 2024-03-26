@@ -233,7 +233,7 @@ function GotLatLong( data )
 function GotSuggestions( data )
 {
 	WriteOut( data.suggestions[0].text + " key: " + data.suggestions[0].magicKey );
-	MakeHTTP( "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/find?magicKey=" +   data.suggestions[0].magicKey +"&f=json", GotLatLong );
+	MakeHTTP( "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/find?magicKey=" + data.suggestions[0].magicKey +"&f=json", GotLatLong );
 }
 
 function LoadWeather( )

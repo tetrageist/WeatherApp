@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-const Search = ( fields ) => {
+const Search = ( { updateLocation} ) => {
   const [strLoc, changeStrLoc] = useState("");
   const [strResp, changeStrResp] = useState( ( <div> ... </div> ) );
-  
+ // const [location, setLocation] = useState({});
+
   const fnClickOnPlace = ( magic ) => {
     fetch( "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/find?magicKey=" + magic +"&f=json" )
       .then( (response) => response.json() )
@@ -11,13 +12,17 @@ const Search = ( fields ) => {
         if( json.locations && json.locations[0] )
         {
           const l = json.locations[0];
-          console.log( fields.weather );
+          //console.log( fields.weather );
           console.log( l.feature.geometry.y + " " + l.feature.geometry.x );
-         // fields.weather.props = { latitude: l.feature.geometry.y, longitude: l.feature.geometry.x };
-         // fields.weather.getWeatherData( l.feature.geometry.y, l.feature.geometry.x ).then( console.log( "Done" ) );
-         // XXX TODO HERE
+          console.log( updateLocation );
+          console.log( "Going" );
+          //updateLocation( l.feature.geometry.y, l.feature.geometry.x );
+          updateLocation( {
+            latitude: l.feature.geometry.y,
+            longitude: l.feature.geometry.x,
+          });
         }
-      } );
+        } );
   };
 
   useEffect( () => {

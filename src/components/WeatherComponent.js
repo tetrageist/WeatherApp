@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Display from './Display';
 
-const WeatherComponent = () => {
+const WeatherComponent = ( { location } ) => {
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -21,8 +21,17 @@ const WeatherComponent = () => {
 
     getLocation();
   }, []);
+  
+  useEffect( () => {
+    if( location && location.latitude && location.longitude )
+    {
+      console.log( "UPDATING POSITION: " + location.latitude + "," +location.longitude );
+      getWeatherData( location.latitude, location.longitude );
+    }
+  }, [location] );
 
   const getWeatherData = async (latitude, longitude) => {
+    console.log( "LAT: "+  latitude );
     setLoading(true);
     try {
       const response = await fetch(`https://api.weather.gov/points/${latitude},${longitude}`);
@@ -74,7 +83,7 @@ const WeatherComponent = () => {
         <li><strong>Relative Humidity:</strong> {currentForecast.relativeHumidity.value} {currentForecast.relativeHumidity.unit}</li>
         <li><strong>Wind Speed:</strong> {currentForecast.windSpeed}</li>
         <li><strong>Wind Direction:</strong> {currentForecast.windDirection}</li>
-        <li><strong>Short Forecast:</strong> {currentForecast.shortForecast}</li>
+        <li><strong>Short Forecast:WeatherComponent</strong> {currentForecast.shortForecast}</li>
         <li><strong>Detailed Forecast:</strong> {currentForecast.detailedForecast}</li>
       </ul>
     </div>
