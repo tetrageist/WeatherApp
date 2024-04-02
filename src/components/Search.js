@@ -5,23 +5,25 @@ const Search = ( { setLocation} ) => {
   const [strResp, changeStrResp] = useState( ( <div> ... </div> ) );
  // const [location, setLocation] = useState({});
 
-  const fnClickOnPlace = ( magic ) => {
-    fetch( "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/find?magicKey=" + magic +"&f=json" )
-      .then( (response) => response.json() )
-      .then( (json) => {
-        if( json.locations && json.locations[0] )
-        {
-          const l = json.locations[0];
-          console.log( l.feature.geometry.y + " " + l.feature.geometry.x );
-          setLocation( {
-            latitude: l.feature.geometry.y,
-            longitude: l.feature.geometry.x,
-          });
-        }
-        } );
-  };
+
 
   useEffect( () => {
+    const fnClickOnPlace = ( magic ) => {
+      fetch( "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/find?magicKey=" + magic +"&f=json" )
+        .then( (response) => response.json() )
+        .then( (json) => {
+          if( json.locations && json.locations[0] )
+          {
+            const l = json.locations[0];
+            console.log( l.feature.geometry.y + " " + l.feature.geometry.x );
+            setLocation( {
+              latitude: l.feature.geometry.y,
+              longitude: l.feature.geometry.x,
+            });
+          }
+          } );
+    };
+
     fetch( "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/suggest?f=json&text=" + strLoc )
       .then( (response) => response.json() )
       .then( (json) => {
@@ -30,7 +32,7 @@ const Search = ( { setLocation} ) => {
         )) : ( <div> ... </div> );
         changeStrResp( children );
       } );
-  },[strLoc])
+  },[strLoc, setLocation])
 
 
   let ret = (

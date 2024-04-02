@@ -24,7 +24,7 @@ function App() {
     }
   }, []);
   
-  let weatherComponent = <WeatherComponent longitude={location.longitude} latitude={location.latitude}/>;
+    // let weatherComponent = <WeatherComponent longitude={location.longitude} latitude={location.latitude}/>;
   
   return (
     <div>
