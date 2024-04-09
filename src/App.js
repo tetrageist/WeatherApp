@@ -27,17 +27,16 @@ function App() {
     // let weatherComponent = <WeatherComponent longitude={location.longitude} latitude={location.latitude}/>;
   
   return (
-    <div>
-      <h1 className="title text-3xl bg-blue-100 text-primary p-6 text-center">
+    <div className='bg-dark h-screen'>
+      <h1 className="title text-3xl bg-lightdark border-b border-gray-700 text-primary p-6 text-center">
         weatherApp&reg;
       </h1>
-      <p className="p-6"> hello, maybe we put a field here for city name?</p>
-      <WeatherComponent location={location}/>
       <Search setLocation={setLocation} />
-      <div className="p-6 flex justify-around font-semibold border rounded-xl shadow">
+      <WeatherComponent location={location}/>
+      {/* <div className="p-6 flex justify-around font-semibold border rounded-xl shadow">
         <div>The weather today</div>
         <div>60 degrees</div>
-      </div>
+      </div> */}
     </div>
   );
 }

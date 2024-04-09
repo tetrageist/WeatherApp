@@ -28,16 +28,16 @@ const Search = ( { setLocation} ) => {
       .then( (response) => response.json() )
       .then( (json) => {
         const children = json.suggestions != null ? json.suggestions.map((val) => (
-          <button id={val.magicKey} onClick={ e => fnClickOnPlace(e.target.id) }>{val.text}</button>
-        )) : ( <div> ... </div> );
+          <button id={val.magicKey} onClick={ e => fnClickOnPlace(e.target.id) } className='bg-primary rounded-2xl px-4 py-2 m-1 hover:rounded text-white hover:bg-blue-900 transition-all duration-400 ease-linear cursor-pointer shadow'>{val.text}</button>
+        )) : ( <div></div> );
         changeStrResp( children );
       } );
   },[strLoc, setLocation])
 
 
   let ret = (
-    <div className="px-6 pb-6 flex items-center justify-center">
-      <div className="flex items-center gap-2 border rounded-xl pl-3 justify-center bg-red-300">
+    <div className="px-6 py-4 pb-6 flex flex-col items-center justify-center">
+      <div className="flex items-center gap-2 border rounded-xl pl-3 justify-center bg-primary">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -54,7 +54,7 @@ const Search = ( { setLocation} ) => {
         </svg>
         
         <input
-          className="border border-red-300 rounded-r-xl p-2"
+          className="border border-primary rounded-r-xl p-2"
           value={strLoc} onChange={ e => changeStrLoc( e.target.value ) }
           placeholder="search anywhere..."
         />
