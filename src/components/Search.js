@@ -32,7 +32,7 @@ const Search = ( { setLocation} ) => {
         )) : ( <div> ... </div> );
         changeStrResp( children );
       } );
-  },[strLoc, setLocation])
+  },[strLoc])
 
 
   let ret = (

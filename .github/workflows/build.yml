@@ -3,7 +3,7 @@ name: "build it!"
 on:
   push:
     branches:
-      - main
+      - mrknastest
 
 jobs:
   build:
@@ -17,6 +17,8 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       - run: yarn install
       - run: yarn build
+        env:
+          CI: ""  
       - run: rm -r .git
       - run: git clone git@github.com:abacef/abacef.github.io.git
       - run: rm -r abacef.github.io/*
