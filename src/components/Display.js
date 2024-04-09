@@ -2,7 +2,11 @@ import React from "react";
 import weather from "../images/clear.png";
 import OhioTempDiff from "./OhioTempDiff";
 
-const Display = ({ currentTemp, shortForecast }) => {
+const Display = ({ currentTemp, shortForecast,  probabilityOfPrecipitation,
+  dewpoint,
+  humidity,
+  windspeed,
+  winddir }) => {
   return (
     <div className='bg-lightdark text-white border border-gray-700'>
       
@@ -13,7 +17,7 @@ const Display = ({ currentTemp, shortForecast }) => {
           </div>
           <div className="ml-4">
             <p className="text-center text-sm uppercase font-semibold pb-2">
-              Seattle, WA
+              where the heck are you?
             </p>
             <p className="text-5xl font-bold text-center pb-2">
               {currentTemp}°
@@ -26,12 +30,17 @@ const Display = ({ currentTemp, shortForecast }) => {
               <p>L:41°</p>
             </div>
             <p className="text-2xl text-center font-bold pb-2">
-        It's fine for now, stay home
+        The weather always sucks here.
       </p>
             <OhioTempDiff localTemp={currentTemp} />
           </div>
         </div>
       </div>
+      {/* {probabilityOfPrecipitation}
+  {dewpoint}
+  {humidity}
+  {windspeed}
+  {winddir} */}
     </div>
   );
 };

@@ -71,8 +71,13 @@ const WeatherComponent = ( { location } ) => {
       <Display
         currentTemp={currentForecast.temperature}
         shortForecast={currentForecast.shortForecast}
+        probabilityOfPrecipitation={currentForecast.probabilityOfPrecipitation.value}
+        dewpoint={currentForecast.dewpoint.value}
+        humidity={currentForecast.relativeHumidity.value}
+        windspeed={currentForecast.windSpeed}
+        winddir={currentForecast.windDirection}
       />
-      <h2>Current Weather Details</h2>
+      {/* <h2>Current Weather Details</h2>
       <ul>
         <li><strong>Temperature:</strong> {currentForecast.temperature} {currentForecast.temperatureUnit}</li>
         <li><strong>Probability of Precipitation:</strong> {currentForecast.probabilityOfPrecipitation.value} {currentForecast.probabilityOfPrecipitation.unit}</li>
@@ -82,7 +87,7 @@ const WeatherComponent = ( { location } ) => {
         <li><strong>Wind Direction:</strong> {currentForecast.windDirection}</li>
         <li><strong>Short Forecast:WeatherComponent</strong> {currentForecast.shortForecast}</li>
         <li><strong>Detailed Forecast:</strong> {currentForecast.detailedForecast}</li>
-      </ul>
+      </ul> */}
     </div>
   );
 };
