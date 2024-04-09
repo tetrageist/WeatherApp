@@ -3,7 +3,7 @@ name: "build it!"
 on:
   push:
     branches:
-      - mrknastest
+      - main
 
 jobs:
   build:
