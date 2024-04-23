@@ -3,15 +3,18 @@ import React, { useState, useEffect } from "react";
 
 export default function _({ localTemp }) {
   let [diff, setDiff] = useState(null);
+  let lastTempLocal = useState(null);
 
   useEffect(() => {
-    async function getDiff() {
+    async function computeLocalDiff() {
+      if( lastTempLocal == localTemp ) return;
+      lastTempLocal = localTemp;
       const response = await callWeatherApi(39.9613011, -83.0019235);
       let ohioTemp = response[0].properties.periods[0].temperature;
-      return localTemp - ohioTemp;
+      setDiff( localTemp - ohioTemp );
     }
 
-    getDiff().then((x) => setDiff(x));
+	computeLocalDiff();
   }, [localTemp]);
 
   return (
