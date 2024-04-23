@@ -7,22 +7,6 @@ const WeatherComponent = ( { location } ) => {
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const getLocation = async () => {
-      try {
-        navigator.geolocation.getCurrentPosition((position) => {
-          const { latitude, longitude } = position.coords;
-          getWeatherData(latitude, longitude);
-        });
-      } catch (error) {
-        setError(error.message);
-        setLoading(false);
-      }
-    };
-
-    getLocation();
-  }, []);
   
   useEffect( () => {
     if( location && location.latitude && location.longitude )
