@@ -66,10 +66,17 @@ const WeatherComponent = ( { location } ) => {
   const currentForecast = weatherData.forecast[0];
   // const currentGrid = weatherData.grid[0];
 
+  var v1 = weatherData.grid[0].temperature;
+  var v2 = weatherData.grid[1].temperature;
+  var high = (v1>v2)?v1:v2;
+  var low = (v1<v2)?v1:v2;
+
   return (
     <div>
       <Display
         currentTemp={currentForecast.temperature}
+        highTemp={high}
+        lowTemp={low}
         shortForecast={currentForecast.shortForecast}
         probabilityOfPrecipitation={currentForecast.probabilityOfPrecipitation.value}
         dewpoint={currentForecast.dewpoint.value}
