@@ -2,7 +2,12 @@ import React from "react";
 import weather from "../images/clear.png";
 import OhioTempDiff from "./OhioTempDiff";
 
-const Display = ({ currentTemp, shortForecast,  probabilityOfPrecipitation,
+const Display = ({
+  currentTemp,
+  highTemp,
+  lowTemp,
+  shortForecast,
+  probabilityOfPrecipitation,
   dewpoint,
   humidity,
   windspeed,
@@ -26,8 +31,8 @@ const Display = ({ currentTemp, shortForecast,  probabilityOfPrecipitation,
               {shortForecast}
             </p>
             <div className="flex gap-4 justify-center">
-              <p>H:48°</p>
-              <p>L:41°</p>
+              <p>H:{highTemp}°</p>
+              <p>L:{lowTemp}°</p>
             </div>
             <p className="text-2xl text-center font-bold pb-2">
         The weather always sucks here.
